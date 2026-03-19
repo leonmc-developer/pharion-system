@@ -7,15 +7,16 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                
+
                 <table class="min-w-full">
                     <thead>
                         <tr>
                             <th class="text-left">Nombre</th>
                             <th class="text-left">Email</th>
                             <th class="text-left">Rol</th>
+                            <th class="text-left">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,10 +25,13 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
+                                <td>
+                                    <a href="{{ route('users.show', $user) }}" class="text-blue-500">Ver</a>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3">No hay usuarios</td>
+                                <td colspan="4">No hay usuarios</td>
                             </tr>
                         @endforelse
                     </tbody>

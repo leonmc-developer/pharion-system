@@ -14,5 +14,9 @@ public function index()
 
     return view('users.index', compact('users'));
 }
+public function show(User $user)
+{
+    return view('users.show', compact('user'));
+}
 
 }
