@@ -25,12 +25,26 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td>
-                                    <a href="{{ route('users.show', $user) }}" class="text-blue-500">Ver</a>
+                                <td class="flex gap-2 items-center">
+                                    <!-- Ver -->
+                                    <a href="{{ route('users.show', $user) }}" class="text-blue-500">
+                                        Ver
+                                    </a>
                                     <!-- Editar -->
-                                    <a href="{{ route('users.edit', $user) }}" class="text-yellow-500 hover:underline">
+                                    <a href="{{ route('users.edit', $user) }}" class="text-yellow-500">
                                         Editar
                                     </a>
+                                    <!-- Eliminar -->
+                                    <form action="{{ route('users.destroy', $user) }}" method="POST"
+                                        onsubmit="return confirm('¿Seguro que deseas eliminar este usuario?')">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="text-red-500">
+                                            Eliminar
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         @empty

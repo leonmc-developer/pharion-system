@@ -34,12 +34,22 @@ public function update(Request $request, User $user)
             Rule::unique('users')->ignore($user->id),
         ],
         'role' => 'required|in:admin,empleado'
-    ]);
-
+    ]);    
     $user->update($request->only('name', 'email', 'role'));
 
     return redirect()->route('users.index')
         ->with('success', 'Usuario actualizado correctamente');
+}
+public function destroy(User $user)
+{
+    if (auth()->id() === $user->id) {
+        return redirect()->route('users.index')
+    ->with('error', 'No puedes eliminar tu propio usuario');
+    }
+    $user->delete();
+
+    return redirect()->route('users.index')
+        ->with('success', 'Usuario eliminado correctamente');
 }
 
 }
