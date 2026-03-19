@@ -41,7 +41,7 @@
                                         @method('DELETE')
 
                                         <button type="submit" class="text-red-500">
-                                            Eliminar
+                                            Desactivar
                                         </button>
                                     </form>
 
