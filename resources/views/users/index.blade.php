@@ -27,6 +27,10 @@
                                 <td>{{ $user->role }}</td>
                                 <td>
                                     <a href="{{ route('users.show', $user) }}" class="text-blue-500">Ver</a>
+                                    <!-- Editar -->
+                                    <a href="{{ route('users.edit', $user) }}" class="text-yellow-500 hover:underline">
+                                        Editar
+                                    </a>
                                 </td>
                             </tr>
                         @empty
