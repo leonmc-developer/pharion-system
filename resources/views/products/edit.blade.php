@@ -15,7 +15,7 @@
                     <input type="text" name="name" id="name" value="{{ old('name', $product->name) }}"
                         class="w-full border border-gray-300 rounded px-3 py-2">
                     @error('name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -24,7 +24,16 @@
                     <input type="number" name="price" id="price" value="{{ old('price', $product->price) }}"
                         step="0.01" class="w-full border border-gray-300 rounded px-3 py-2">
                     @error('price')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-1" for="stock">Stock</label>
+                    <input type="number" name="stock" id="stock" value="{{ old('stock', $product->stock) }}"
+                        class="w-full border border-gray-300 rounded px-3 py-2">
+
+                    @error('stock')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
