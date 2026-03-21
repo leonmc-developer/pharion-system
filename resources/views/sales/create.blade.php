@@ -3,9 +3,13 @@
 
     <select name="product_id">
         @foreach($products as $product)
-            <option value="{{ $product->id }}">
-                {{ $product->name }} (Stock: {{ $product->stock }})
-            </option>
+            @forelse($products as $product)
+                <option value="{{ $product->id }}">
+                    {{ $product->name }} (Stock: {{ $product->stock }})
+                </option>
+            @empty
+                <option disabled>No hay productos con stock disponible</option>
+            @endforelse
         @endforeach
     </select>
 
