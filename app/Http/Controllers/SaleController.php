@@ -8,6 +8,14 @@ use App\Models\Sale;
 
 class SaleController extends Controller
 {
+    public function index()
+    {
+        $sales = \App\Models\Sale::with('product')
+            ->latest()
+            ->paginate(10);
+
+        return view('sales.index', compact('sales'));
+    }
     public function store(Request $request)
     {
         $request->validate([
