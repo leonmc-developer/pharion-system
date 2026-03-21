@@ -10,4 +10,8 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = ['name', 'price', 'stock'];
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }
