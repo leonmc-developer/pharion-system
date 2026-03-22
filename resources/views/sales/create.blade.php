@@ -1,6 +1,12 @@
 <form action="{{ route('sales.store') }}" method="POST">
     @csrf
+@if(session('error'))
+    <div>{{ session('error') }}</div>
+@endif
 
+@if(session('success'))
+    <div>{{ session('success') }}</div>
+@endif
     <select name="product_id">
         @foreach($products as $product)
             @forelse($products as $product)
