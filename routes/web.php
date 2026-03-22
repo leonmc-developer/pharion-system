@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\CashClosingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +19,8 @@ Route::resource('users', UserController::class);
 Route::resource('products', ProductController::class)
     ->middleware('auth');
 Route::resource('sales', SaleController::class)->middleware('auth');
+Route::get('/cash-closing', [CashClosingController::class, 'index'])
+    ->name('cash.closing.index');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
