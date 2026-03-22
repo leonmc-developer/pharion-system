@@ -33,6 +33,9 @@
                         <td>{{ $sale->created_at }}</td>
                     </tr>
                 @endforeach
+                @if($sales->isEmpty())
+                    </tr><td colspan="5">No hay ventas para esta fecha</td>
+                @endif
             </tbody>
         </table>
 
