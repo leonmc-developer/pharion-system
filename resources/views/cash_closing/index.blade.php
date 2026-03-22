@@ -38,6 +38,11 @@
                 @endif
             </tbody>
         </table>
-
+<form method="POST" action="{{ route('cash.closing.store') }}">
+    @csrf
+    <button class="bg-green-500 text-white px-4 py-2 rounded">
+        Cerrar Caja
+    </button>
+</form>
     </div>
 </x-app-layout>

@@ -21,6 +21,8 @@ Route::resource('products', ProductController::class)
 Route::resource('sales', SaleController::class)->middleware('auth');
 Route::get('/cash-closing', [CashClosingController::class, 'index'])
     ->name('cash.closing.index');
+Route::post('/cash-closing', [CashClosingController::class, 'store'])
+    ->name('cash.closing.store');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
