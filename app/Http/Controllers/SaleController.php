@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\CashClosing;
+
 
 class SaleController extends Controller
 {
@@ -18,6 +20,9 @@ class SaleController extends Controller
     }
     public function store(Request $request)
     {
+        if (CashClosing::where('date', today())->exists()) {
+            return back()->with('error', 'Caja cerrada, no se pueden registrar ventas');
+        }
         $request->validate([
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1'
@@ -37,7 +42,8 @@ class SaleController extends Controller
         Sale::create([
             'product_id' => $product->id,
             'quantity' => $request->quantity,
-            'total' => $total
+            'total' => $total,
+            'user_id' => auth()->id(),
         ]);
 
         // 🔻 DESCONTAR STOCK
@@ -47,8 +53,10 @@ class SaleController extends Controller
     }
     public function create()
     {
+         
         $products = Product::where('stock', '>', 0)->get();
 
         return view('sales.create', compact('products'));
+        
     }
 }
