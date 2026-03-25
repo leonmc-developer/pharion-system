@@ -14,4 +14,8 @@ class Product extends Model
     {
         return $this->hasMany(Sale::class);
     }
+    public function batches()
+    {
+        return $this->hasMany(Batch::class);
+    }
 }
