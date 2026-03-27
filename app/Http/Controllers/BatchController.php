@@ -13,7 +13,14 @@ class BatchController extends Controller
         $products = Product::all();
         return view('batches.create', compact('products'));
     }
-    
+    public function index()
+    {
+        $batches = Batch::with('product')
+            ->orderBy('expiration_date', 'asc')
+            ->get();
+
+        return view('batches.index', compact('batches'));
+    }
     public function store(Request $request)
     {
         $request->validate([

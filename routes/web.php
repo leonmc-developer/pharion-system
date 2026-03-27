@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::get('/batches/create', [BatchController::class, 'create'])->name('batches.create');
     Route::post('/batches', [BatchController::class, 'store'])->name('batches.store');
+    Route::get('/batches', [BatchController::class, 'index'])->name('batches.index');
     Route::get('/cash-closing', [CashClosingController::class, 'index'])
         ->name('cash.closing.index');
 
