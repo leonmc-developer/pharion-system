@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\CashClosingController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\PurchaseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,7 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/batches', [BatchController::class, 'index'])->name('batches.index');
     Route::get('/cash-closing', [CashClosingController::class, 'index'])
         ->name('cash.closing.index');
-
+    Route::get('/purchases/create', [PurchaseController::class, 'create'])->name('purchases.create');
+    Route::post('/purchases', [PurchaseController::class, 'store'])->name('purchases.store');
     Route::post('/cash-closing', [CashClosingController::class, 'store'])
         ->name('cash.closing.store');
 
